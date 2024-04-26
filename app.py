@@ -4,6 +4,7 @@ from config.database import db
 from routes.cliente_routes import cliente_bp
 from routes.cargo_routes import cargo_bp
 
+
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:Rr159789852@127.0.0.1:5432/M & S'

@@ -23,7 +23,7 @@ def registrar_cliente(cliente=None):
             senha=cliente_senha
         )
         if not cliente_nome or not cliente_email or not cliente_senha:
-            return jsonify('Faltam dados obrigatórios'), 200
+            return jsonify('Faltam dados obrigatórios'), 404
 
         db.session.add(cliente)
         db.session.commit()

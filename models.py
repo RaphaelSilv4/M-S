@@ -1,6 +1,7 @@
 from sqlalchemy import Integer, String
 from sqlalchemy.orm import Mapped, mapped_column
 from config.database import db
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class Cliente(db.Model):
