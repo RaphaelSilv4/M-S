@@ -14,7 +14,9 @@ def registrar_cliente(cliente=None):
     # adicionar novo cliente
     elif request.method == "POST":
         data = request.get_json()
+        print(data)
         cliente_nome = data["nome"]
+        print(cliente_nome)
         cliente_email = data['email']
         cliente_senha = data['senha']
         cliente = Cliente(
