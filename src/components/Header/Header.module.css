@@ -1,0 +1,60 @@
+.header {
+    height:7rem;
+    width: 100%;
+    background-color: #9F0606; 
+    color: #ffffff; 
+    padding: 10px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 20pt;
+    font-style: italic;
+    margin-left: 5rem;
+    margin-right: 10rem;
+    color: #534c4c;
+}
+
+.search_bar {
+    flex-grow: 1; /* A barra de pesquisa deve ocupar todo o espaço disponível */
+    text-align: center;   
+}
+
+.login {
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    color: #ffffff;
+    font-weight: 700;
+    margin: 0;
+}
+
+.login:hover {
+    text-decoration: underline;
+}
+
+.header Input {
+    width: 40rem;
+    margin-left: 0rem;
+    margin-right: 0rem;
+    justify-content: center;
+    align-items: center;
+}
+
+* {
+    outline: none;
+  }
+    
+  button {
+    height: 1rem;
+    color: #000000;
+    font-family: Nunito;
+    padding: 0;
+    margin: 0;
+    margin-right: 43rem;
+    border: 0;
+    background-color: transparent;
+  }
+  
