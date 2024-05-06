@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from config.database import db
-from models import Cliente
+from models import user_model
 
 cliente_bp = Blueprint('cliente_bp', __name__, url_prefix='/routes')
 
@@ -9,7 +9,7 @@ cliente_bp = Blueprint('cliente_bp', __name__, url_prefix='/routes')
 def registrar_cliente(cliente=None):
     # listagem dos clientes
     if request.method == "GET":
-        clientes = Cliente.query.all()
+        clientes = user_model.Cliente.query.all()
         return jsonify([cliente.serialize() for cliente in clientes]), 200
     # adicionar novo cliente
     elif request.method == "POST":
@@ -17,7 +17,7 @@ def registrar_cliente(cliente=None):
         cliente_nome = data["nome"]
         cliente_email = data['email']
         cliente_senha = data['senha']
-        cliente = Cliente(
+        cliente = user_model.Cliente(
             nome=cliente_nome,
             email=cliente_email,
             senha=cliente_senha

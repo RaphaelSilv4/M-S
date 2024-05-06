@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from models import Cliente, Cargo
+from models import user_model
 from config.database import db
 
 cargo_bp = Blueprint('cargo_bp', __name__, url_prefix='/cargos')
@@ -13,8 +13,8 @@ def atribuir_cargo(cliente_id):
     if not novo_cargo_nome:
         return jsonify({'error': 'Cargo não especificado'}), 400
 
-    cliente = Cliente.query.get_or_404(cliente_id)
-    cargo = Cargo.query.filter_by(nome=novo_cargo_nome).first()
+    cliente = user_model.Cliente.query.get_or_404(cliente_id)
+    cargo = user_model.Cargo.query.filter_by(nome=novo_cargo_nome).first()
 
     if not cargo:
         return jsonify({'error': 'Cargo inválido'}), 400

@@ -9,13 +9,13 @@ class Cliente(db.Model):
 
     id = mapped_column(Integer, primary_key=True, autoincrement=True)
     nome = mapped_column(String(30), nullable=False)
-    senha = mapped_column(String(30), nullable=False)
+    senha_hash = mapped_column(String(100), nullable=False)
     email = mapped_column(String(90), nullable=False)
     cargo = mapped_column(String(90), default='usuario_cliente')
 
     def __init__(self, nome, senha, email):
         self.nome = nome
-        self.senha = senha
+        self.senha_hash = generate_password_hash(senha)
         self.email = email
 
     def serialize(self):

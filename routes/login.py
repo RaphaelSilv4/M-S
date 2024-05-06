@@ -1,7 +1,6 @@
 from flask import Blueprint, jsonify, request
-from models import Cliente
-from werkzeug.security import check_password_hash
-
+from models import user_model
+from werkzeug.security import check_password_hash, generate_password_hash
 login_bp = Blueprint('login_bp', __name__, url_prefix='/login')
 
 
@@ -11,11 +10,11 @@ def login():
     senha = request.json.get('senha')
 
     if not email or not senha:
-        return jsonify({'error': 'Credenciais inválidas'}), 400
+        return jsonify({'error': 'Email ou senha faltando'}), 400
 
-    usuario = Cliente.query.filter_by(email=email).first()
+    usuario = user_model.Cliente.query.filter_by(email=email).first()
 
-    if not usuario or not check_password_hash(usuario.senha, senha):
-        return jsonify({'error': 'Credenciais inválidas'}), 401
+    if not usuario or not check_password_hash(senha):
+        return jsonify({'error': 'Email ou senha incorretos'}), 401
 
     return jsonify({'message': 'Login bem-sucedido'}), 200
