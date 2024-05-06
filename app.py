@@ -12,5 +12,8 @@ db.init_app(app)
 
 app.register_blueprint(cliente_bp)
 app.register_blueprint(cargo_bp)
+app.register_blueprint(login_bp)
+CORS(app)
+
 if __name__ == '__main__':
     app.run()
