@@ -8,7 +8,7 @@ from routes.login import login_bp
 app = Flask(__name__)
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:hot4@127.0.0.1:5432/m&s'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:passward@127.0.0.1:5432/bd'
 db.init_app(app)
 app.register_blueprint(cliente_bp)
 app.register_blueprint(cargo_bp)
