@@ -1,7 +1,7 @@
 '''import requests
 
  #Sua chave de API do TMDb
-API_KEY = '58d1b4968208f7d71d3dde22b20af7d4'
+API_KEY = 'TMDB_KEY'
 
  #URL base da API do TMDb
 base_url = 'https://api.themoviedb.org/3'

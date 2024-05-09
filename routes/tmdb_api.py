@@ -58,38 +58,19 @@ def get_content_details():
         return None
 
 
+@tmdb_bp.route("/tmdb/popular", methods=["GET"])
 def get_popular_content():
     tipo = request.args.get('tipo')
     if not tipo:
         return jsonify({"error": "Parâmetros ausentes"}), 400
+    
     url = f"https://api.themoviedb.org/3/trending/{tipo}/week?api_key={api_key}&append_to_response=images%2Caggregate_credits%2Cwatch_providers%2Csimilar%2Cexternal_ids%2Ccontent_ratings%2Creleases&language=pt-BR"
     response = requests.get(url)
+    
     if response.status_code == 200:
         data = response.json()
         if data.get('results'):
-            media = data['results'][0]
-            media_id = media['id']
-
-            media_logo = None
-            url_logo = f"https://api.themoviedb.org/3/{tipo}/{media_id}/images"
-            parametros = {'api_key': api_key}
-            response_logo = requests.get(url_logo, params=parametros)
-
-            if response_logo.status_code == 200:
-                data_logo = response_logo.json()
-                pt_item = next((item for item in data_logo.get('logos', []) if item.get('iso_639_1') == 'pt'), None)
-                selected_item = pt_item or next(
-                    (item for item in data_logo.get('logos', []) if item.get('iso_639_1') == 'en'), None)
-                if selected_item:
-                    media_logo = f"https://image.tmdb.org/t/p/w300{selected_item.get('file_path')}"
-
-            media_details = None
-            url_details = f"https://api.themoviedb.org/3/{tipo}/{media_id}?api_key={api_key}&append_to_response=images%2Caggregate_credits%2Cwatch_providers%2Csimilar%2Cexternal_ids%2Ccontent_ratings%2Creleases&language=pt-BR"
-            response_details = requests.get(url_details)
-            if response_details.status_code == 200:
-                media_details = response_details.json()
-
-            return jsonify({"trend": media_details, "trend_logo": media_logo})
+            return jsonify(data)
         else:
             return jsonify({"error": "Não foi possível obter o filme ou série mais assistido(a)"}), 404
     else:
